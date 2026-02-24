@@ -1,3 +1,29 @@
+ uc6
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class palindromCheckerapp {
+    public static boolean isPalindrome(String input) {
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
+
+        // Preprocess: remove spaces and convert to lowercase
+        String cleanInput = input.replaceAll("\\s+", "").toLowerCase();
+
+        // Enqueue characters to queue and push to stack
+        for (char ch : cleanInput.toCharArray()) {
+            queue.add(ch);  // FIFO
+            stack.push(ch); // LIFO
+        }
+
+        // Compare dequeue (queue) vs pop (stack)
+        while (!queue.isEmpty()) {
+            if (!queue.remove().equals(stack.pop())) {
+                return false; // Mismatch found
+            }
+
 uc5
 import java.util.Scanner;
 import java.util.Stack;
@@ -51,16 +77,24 @@ public class palindromCheckerapp {
 
             scanner.close();
  main
+ main
         }
 
         return true; // All characters matched
     }
+ uc6
+
  uc5
+main
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+ uc6
+        System.out.println("=== Queue + Stack Based Palindrome Checker ===");
+
         System.out.println("=== Stack-Based Palindrome Checker ===");
+ main
         System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
@@ -75,6 +109,10 @@ public class palindromCheckerapp {
         scanner.close();
     }
 
+ uc6
+}
+
 
  main
 }
+ main
