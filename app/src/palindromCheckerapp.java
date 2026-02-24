@@ -1,49 +1,48 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
 public class palindromCheckerapp {
-        public static void main(String[] args) {
+    public static boolean isPalindrome(String input) {
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
 
-            // Hardcoded string literal
-            String word = "madam";
+        // Preprocess: remove spaces and convert to lowercase
+        String cleanInput = input.replaceAll("\\s+", "").toLowerCase();
 
-            // Variable to store reversed string
-            String reversed = "";
-
-            // Reverse the string using loop
-            for (int i = word.length() - 1; i >= 0; i--) {
-                reversed = reversed + word.charAt(i);
-            }
-
-            // Check palindrome condition using if-else
-            if (word.equals(reversed)) {
-                System.out.println("The word \"" + word + "\" is a Palindrome.");
-            } else {
-                System.out.println("The word \"" + word + "\" is NOT a Palindrome.");
-            }
-
-            System.out.println("Program executed successfully.");
+        // Enqueue characters to queue and push to stack
+        for (char ch : cleanInput.toCharArray()) {
+            queue.add(ch);  // FIFO
+            stack.push(ch); // LIFO
         }
+
+        // Compare dequeue (queue) vs pop (stack)
+        while (!queue.isEmpty()) {
+            if (!queue.remove().equals(stack.pop())) {
+                return false; // Mismatch found
+            }
+        }
+
+        return true; // All characters matched
     }
-=======
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        // Hardcoded string literal
-        String word = "madam";
+        System.out.println("=== Queue + Stack Based Palindrome Checker ===");
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        // Reverse the string
-        String reversedWord = "";
+        boolean result = isPalindrome(input);
 
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversedWord = reversedWord + word.charAt(i);
-        }
-
-        // Conditional check for palindrome
-        if (word.equals(reversedWord)) {
-            System.out.println("The given word \"" + word + "\" is a Palindrome.");
+        if (result) {
+            System.out.println("\"" + input + "\" is a palindrome!");
         } else {
-            System.out.println("The given word \"" + word + "\" is NOT a Palindrome.");
+            System.out.println("\"" + input + "\" is NOT a palindrome.");
         }
 
-        System.out.println("Program execution completed.");
+        scanner.close();
     }
+
 }
-}
->>>>>>> uc3
