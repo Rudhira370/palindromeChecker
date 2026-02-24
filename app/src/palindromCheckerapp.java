@@ -1,49 +1,36 @@
 public class palindromCheckerapp {
+    public static boolean isPalindrome(String str) {
+            // Convert string to char array
+                char[] chars = str.toCharArray();
+
+                int start = 0;
+            int end = chars.length - 1;
+
+            // Two-pointer comparison
+            while (start < end) {
+                if (chars[start] != chars[end]) {
+                    return false; // Not a palindrome
+                }
+                start++;
+                end--;
+            }
+            return true; // Palindrome
+        }
+
         public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
 
-            // Hardcoded string literal
-            String word = "madam";
+            System.out.print("Enter a string to check palindrome: ");
+            String input = scanner.nextLine();
 
-            // Variable to store reversed string
-            String reversed = "";
-
-            // Reverse the string using loop
-            for (int i = word.length() - 1; i >= 0; i--) {
-                reversed = reversed + word.charAt(i);
-            }
-
-            // Check palindrome condition using if-else
-            if (word.equals(reversed)) {
-                System.out.println("The word \"" + word + "\" is a Palindrome.");
+            if (isPalindrome(input)) {
+                System.out.println("\"" + input + "\" is a palindrome!");
             } else {
-                System.out.println("The word \"" + word + "\" is NOT a Palindrome.");
+                System.out.println("\"" + input + "\" is not a palindrome!");
             }
 
-            System.out.println("Program executed successfully.");
+            scanner.close();
         }
     }
-=======
-    public static void main(String[] args) {
 
-        // Hardcoded string literal
-        String word = "madam";
-
-        // Reverse the string
-        String reversedWord = "";
-
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversedWord = reversedWord + word.charAt(i);
-        }
-
-        // Conditional check for palindrome
-        if (word.equals(reversedWord)) {
-            System.out.println("The given word \"" + word + "\" is a Palindrome.");
-        } else {
-            System.out.println("The given word \"" + word + "\" is NOT a Palindrome.");
-        }
-
-        System.out.println("Program execution completed.");
-    }
 }
-}
->>>>>>> uc3
